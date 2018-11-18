@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package sensor;
+
+message Value {
+    int64 type = 1;
+    sint32 timestamp = 2;
+
+    oneof value {
+        sint32 sint_v = 3;
+        double double_v = 4;
+        float float_v = 5;
+    }
+}
+
+message SensorEvent {
+    int64 event_id = 1;
+    int64 timestamp = 2;
+    int64 device_id = 3;
+    repeated Value values = 4;
+}
+
+message SensorEvents {
+    repeated SensorEvent events = 1;
+}
